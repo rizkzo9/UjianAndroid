@@ -42,7 +42,25 @@ public class MainActivity extends AppCompatActivity {
                     edNamaBelakang.setText("");
                     intent_list.putStringArrayListExtra("daftar_nama", daftar_nama);
                     startActivity(intent_list);
+                }{
+                override fun onCreate(savedInstanceState: Bundle?) {
+                    super.onCreate(savedInstanceState)
+                    setContentView(R.layout.activity_main)
+
+                    val namaList = mutableListOf<String>()
+
+                    for (i in 1..20) {
+                        if (i % 2 != 0) { // Memeriksa apakah bilangan i adalah ganjil
+                            val nama = "Nama $i"
+                            namaList.add(nama)
+                        }
+                    }
+
+                    // Output namaList ke log atau tampilkan sesuai kebutuhan Anda
+                    namaList.forEach { println(it) }
                 }
+            }
+
             }
         });
     }
