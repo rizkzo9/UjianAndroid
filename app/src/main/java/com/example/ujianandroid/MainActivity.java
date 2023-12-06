@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<String> daftar_nama = new ArrayList<>();
 
-        Intent intent_list = new Intent(MainActivity.this, ListActivity.class);
+        Intent intent_list = new Intent(MainActivity.this, ListActivity.class , startActvity.class);
 
         btnSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,30 +35,18 @@ public class MainActivity extends AppCompatActivity {
                 if(isian_nama_depan.isEmpty()){
                     Toast.makeText(getApplicationContext(), "Isian masih kosong", Toast.LENGTH_SHORT).show();
                 }else{
-                    String nama_lengkap = isian_nama_depan.concat(" ").concat(isian_nama_belakang);
-                    daftar_nama.clear();
-                    daftar_nama.add(nama_lengkap);
+                    for (int i = 1; i <= 20; i += 2) {
+                        // Hanya menambahkan nama jika i adalah bilangan ganjil
+                        String nama_lengkap = isian_nama_depan + " " + isian_nama_belakang + " " + i;
+                        daftar_nama.add(nama_lengkap);
+                    }
                     edNamaDepan.setText("");
                     edNamaBelakang.setText("");
                     intent_list.putStringArrayListExtra("daftar_nama", daftar_nama);
                     startActivity(intent_list);
                 }{
-                override fun onCreate(savedInstanceState: Bundle?) {
-                    super.onCreate(savedInstanceState)
-                    setContentView(R.layout.activity_main)
 
-                    val namaList = mutableListOf<String>()
 
-                    for (i in 1..20) {
-                        if (i % 2 != 0) { // Memeriksa apakah bilangan i adalah ganjil
-                            val nama = "Nama $i"
-                            namaList.add(nama)
-                        }
-                    }
-
-                    // Output namaList ke log atau tampilkan sesuai kebutuhan Anda
-                    namaList.forEach { println(it) }
-                }
             }
 
             }
